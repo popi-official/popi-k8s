@@ -1,42 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "api-gateway.name" . }}-deploy
-  namespace: {{ .Values.namespace }}
+  name: {{ .Release.Name }}-deploy
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "api-gateway.name" . }}
+      app: {{ .Values.app.name }}
   template:
     metadata:
       labels:
-        app: {{ include "api-gateway.name" . }}
+        app: {{ .Values.app.name }}
     spec:
       containers:
-        - name: api-gateway
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: {{ .Values.app.name }}
+          image: "{{ .Values.container.image.name }}:{{ .Values.container.image.tag }}"
+          imagePullPolicy: {{ .Values.container.image.pullPolicy }}
           ports:
             - containerPort: 8000
           volumeMounts:
-            - name: config-volume
+            - name: {{ .Values.app.name }}-config-volume
               mountPath: /config
               readOnly: true
+
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
             - name: JWT_ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "api-gateway.name" . }}-secret
+                  name: {{ .Values.app.name }}-secret
                   key: JWT_ACCESS_TOKEN_SECRET
             - name: JWT_ISSUER
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "api-gateway.name" . }}-secret
+                  name: {{ .Values.app.name }}-secret
                   key: JWT_ISSUER
       volumes:
-        - name: config-volume
+        - name: {{ .Values.app.name }}-config-volume
           configMap:
-            name: {{ include "api-gateway.name" . }}-configmap
+            name: {{.Values.app.name}}-configmap

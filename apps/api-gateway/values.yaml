@@ -1,21 +1,19 @@
+app:
+  name: api-gateway
+
 replicaCount: 1
 
-image:
-  repository: 446305434496.dkr.ecr.ap-northeast-2.amazonaws.com/popi-user/popi-api-gateway
-  tag: latest
-  pullPolicy: Always
+container:
+  image:
+    name: 446305434496.dkr.ecr.ap-northeast-2.amazonaws.com/popi-user/popi-api-gateway
+    tag: latest
+    pullPolicy: Always
 
 service:
   type: ClusterIP
   port: 8000
+  targetPort: 8000
 
-config:
-  allowedOrigins:
-    - http://localhost:3000
-    - https://www.dev.ceo.popi.today
-
-env:
-  JWT_ACCESS_TOKEN_SECRET: ""
-  JWT_ISSUER: ""
-
-namespace: popi
+secretKeys:
+  - JWT_ISSUER
+  - JWT_ACCESS_TOKEN_SECRET
