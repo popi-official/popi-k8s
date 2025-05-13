@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "api-gateway.fullname" . }}-deploy
+  name: {{ include "api-gateway.name" . }}-deploy
   namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
