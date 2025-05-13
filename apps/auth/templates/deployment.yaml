@@ -1,45 +1,117 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "auth.name" . }}
-  namespace: popi
+  name: {{ .Release.Name }}-deploy
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: auth
+      app: {{ .Values.app.name }}
   template:
     metadata:
       labels:
-        app: auth
+        app: {{ .Values.app.name }}
     spec:
       containers:
-        - name: auth-service
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: {{ .Values.app.name }}
+          image: "{{ .Values.container.image.name }}:{{ .Values.container.image.tag }}"
+          imagePullPolicy: {{ .Values.container.image.pullPolicy }}
           ports:
             - containerPort: 8080
           volumeMounts:
-            - name: config-volume
+            - name: {{ .Values.app.name }}-config-volume
               mountPath: /config
               readOnly: true
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
-{{- range $key := list
-      "MYSQL_HOST" "MYSQL_PORT" "DB_NAME" "DB_USERNAME" "DB_PASSWORD"
-      "REDIS_HOST" "REDIS_PORT" "KAKAO_CLIENT_ID" "KAKAO_CLIENT_SECRET"
-      "GOOGLE_CLIENT_ID" "GOOGLE_CLIENT_SECRET" "BASE_URL"
-      "JWT_ACCESS_TOKEN_SECRET" "JWT_REFRESH_TOKEN_SECRET"
-      "JWT_ACCESS_TOKEN_EXPIRATION_TIME" "JWT_REFRESH_TOKEN_EXPIRATION_TIME"
-      "JWT_ISSUER" }}
-            - name: {{ $key }}
+            - name: MYSQL_HOST
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
-                  key: {{ $key }}
-{{- end }}
+                  name: {{ .Values.app.name }}-secret
+                  key: MYSQL_HOST
+            - name: MYSQL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: MYSQL_PORT
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: DB_NAME
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: DB_PASSWORD
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: REDIS_PORT
+            - name: KAKAO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: KAKAO_CLIENT_ID
+            - name: KAKAO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: KAKAO_CLIENT_SECRET
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: GOOGLE_CLIENT_ID
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: GOOGLE_CLIENT_SECRET
+            - name: BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: BASE_URL
+            - name: JWT_ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: JWT_ACCESS_TOKEN_SECRET
+            - name: JWT_REFRESH_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: JWT_REFRESH_TOKEN_SECRET
+            - name: JWT_ACCESS_TOKEN_EXPIRATION_TIME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: JWT_ACCESS_TOKEN_EXPIRATION_TIME
+            - name: JWT_REFRESH_TOKEN_EXPIRATION_TIME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: JWT_REFRESH_TOKEN_EXPIRATION_TIME
+            - name: JWT_ISSUER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: JWT_ISSUER
       volumes:
-        - name: config-volume
+        - name: {{ .Values.app.name }}-config-volume
           configMap:
-            name: {{ include "auth.name" . }}-config
+            name: {{ .Values.app.name }}-config-volume

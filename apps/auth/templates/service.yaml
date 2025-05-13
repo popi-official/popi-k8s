@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-svc
-  namespace: popi
+  name: {{ .Release.Name }}-svc
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
-    app: auth
+    app: {{ .Values.app.name }}
   ports:
     - protocol: TCP
       port: {{ .Values.service.port }}
