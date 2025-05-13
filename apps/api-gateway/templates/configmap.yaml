@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "api-gateway.fullname" . }}-configmap
+  name: {{ include "api-gateway.name" . }}-configmap
   namespace: {{ .Values.namespace }}
 data:
   application-k8s.yml: |

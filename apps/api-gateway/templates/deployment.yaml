@@ -29,14 +29,14 @@ spec:
             - name: JWT_ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "api-gateway.fullname" . }}-secret
+                  name: {{ include "api-gateway.name" . }}-secret
                   key: JWT_ACCESS_TOKEN_SECRET
             - name: JWT_ISSUER
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "api-gateway.fullname" . }}-secret
+                  name: {{ include "api-gateway.name" . }}-secret
                   key: JWT_ISSUER
       volumes:
         - name: config-volume
           configMap:
-            name: {{ include "api-gateway.fullname" . }}-configmap
+            name: {{ include "api-gateway.name" . }}-configmap

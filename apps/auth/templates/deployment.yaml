@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "auth.fullname" . }}
+  name: {{ include "auth.name" . }}
   namespace: popi
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -42,4 +42,4 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: {{ include "auth.fullname" . }}-config
+            name: {{ include "auth.name" . }}-config

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "auth.fullname" . }}-config
+  name: {{ include "auth.name" . }}-config
   namespace: popi
 data:
   application-k8s.yml: |-
