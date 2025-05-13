@@ -59,6 +59,7 @@ data:
         enabled: false
 
     springdoc:
+      enable-kotlin: false
       swagger-ui:
         urls[0]:
           name: 인증 서비스
