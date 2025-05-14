@@ -32,14 +32,14 @@ data:
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/auth/(?<segment>.*), /${segment}
-            - id: auth-docs
-              uri: lb://auth-svc
+
+            - id: member-docs
+              uri: lb://MEMBERS
               predicates:
-                - Path=/auth/v3/api-docs
+                - Path=/members/v3/api-docs
               filters:
                 - RemoveRequestHeader=Cookie
-                - RewritePath=/auth/(?<segment>.*), /${segment}
-
+                - RewritePath=/members/(?<segment>.*), /$\{segment}
             - id: member-service
               uri: lb://MEMBERS
               predicates:
@@ -49,14 +49,6 @@ data:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/members/(?<segment>.*), /$\{segment}
                 - JwtAuthenticationFilter
-
-            - id: member-docs
-              uri: lb://MEMBERS
-              predicates:
-                - Path=/members/v3/api-docs
-              filters:
-                - RemoveRequestHeader=Cookie
-                - RewritePath=/members/(?<segment>.*), /$\{segment}
 
           globalcors:
             cors-configurations:
