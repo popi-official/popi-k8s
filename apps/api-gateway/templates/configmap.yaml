@@ -24,7 +24,6 @@ data:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/auth/(?<segment>.*), /${segment}
                 - RefreshTokenHeaderFilter
-
             - id: auth-service
               uri: lb://auth-svc
               predicates:
@@ -33,7 +32,6 @@ data:
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/auth/(?<segment>.*), /${segment}
-
             - id: auth-docs
               uri: lb://auth-svc
               predicates:
@@ -41,6 +39,24 @@ data:
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/auth/(?<segment>.*), /${segment}
+
+            - id: member-service
+              uri: lb://MEMBERS
+              predicates:
+                - Path=/members/**
+                - Method=GET,POST,DELETE
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/members/(?<segment>.*), /$\{segment}
+                - JwtAuthenticationFilter
+
+            - id: member-docs
+              uri: lb://MEMBERS
+              predicates:
+                - Path=/members/v3/api-docs
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/members/(?<segment>.*), /$\{segment}
 
           globalcors:
             cors-configurations:
@@ -64,6 +80,9 @@ data:
         urls[0]:
           name: 인증 서비스
           url: /auth/v3/api-docs
+        urls[1]:
+          name: 회원 서비스
+          url: /members/v3/api-docs
 
     jwt:
       access-token-secret: ${JWT_ACCESS_TOKEN_SECRET}
