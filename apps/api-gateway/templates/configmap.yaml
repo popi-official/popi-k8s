@@ -16,7 +16,7 @@ data:
         gateway:
           routes:
             - id: auth-reissue
-              uri: lb://auth-svc
+              uri: lb://auth-service-svc
               predicates:
                 - Path=/auth/reissue
                 - Method=POST
@@ -25,7 +25,7 @@ data:
                 - RewritePath=/auth/(?<segment>.*), /${segment}
                 - RefreshTokenHeaderFilter
             - id: auth-service
-              uri: lb://auth-svc
+              uri: lb://auth-service-svc
               predicates:
                 - Path=/auth/**
                 - Method=GET,POST
@@ -34,14 +34,14 @@ data:
                 - RewritePath=/auth/(?<segment>.*), /${segment}
 
             - id: member-docs
-              uri: lb://MEMBERS
+              uri: lb://member-service-svc
               predicates:
                 - Path=/members/v3/api-docs
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/members/(?<segment>.*), /$\{segment}
             - id: member-service
-              uri: lb://MEMBERS
+              uri: lb://member-service-svc
               predicates:
                 - Path=/members/**
                 - Method=GET,POST,DELETE
