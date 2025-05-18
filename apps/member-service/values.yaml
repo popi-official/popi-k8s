@@ -1,5 +1,5 @@
 app:
-  name: member
+  name: member-service
 
 replicaCount: 1
 
