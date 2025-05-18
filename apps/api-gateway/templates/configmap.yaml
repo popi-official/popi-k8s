@@ -12,7 +12,7 @@ data:
       cloud:
         kubernetes:
           discovery:
-            namespaces: popi
+            namespaces: popi-user
         gateway:
           routes:
             - id: auth-reissue
