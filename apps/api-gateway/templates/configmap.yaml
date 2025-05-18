@@ -50,6 +50,23 @@ data:
                 - RewritePath=/members/(?<segment>.*), /$\{segment}
                 - JwtAuthenticationFilter
 
+            - id: reservation-docs
+              uri: lb://reservation-service-svc
+              predicates:
+                - Path=/reservations/v3/api-docs
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/reservations/(?<segment>.*), /$\{segment}
+            - id: reservation-service
+              uri: lb://reservation-service-svc
+              predicates:
+                - Path=/reservations/**
+                - Method=GET,POST,DELETE
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/reservations/(?<segment>.*), /$\{segment}
+                - JwtAuthenticationFilter
+
           globalcors:
             cors-configurations:
               "[/**]":
