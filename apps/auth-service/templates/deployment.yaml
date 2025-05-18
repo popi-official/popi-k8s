@@ -24,6 +24,8 @@ spec:
               mountPath: /config
               readOnly: true
           env:
+            - name: TZ
+              value: Asia/Seoul
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
             - name: MYSQL_HOST

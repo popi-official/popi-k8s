@@ -25,6 +25,8 @@ spec:
               readOnly: true
 
           env:
+            - name: TZ
+              value: Asia/Seoul
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
             - name: JWT_ACCESS_TOKEN_SECRET
