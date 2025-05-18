@@ -73,7 +73,7 @@ data:
                 allow-credentials: true
                 allowed-origins:
                   - http://localhost:3000
-                  - https://www.dev.ceo.popi.today
+                  - https://www.dev.popi.today
                 allowed-headers:
                   - "*"
                 allowed-methods:
