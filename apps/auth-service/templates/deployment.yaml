@@ -63,31 +63,16 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: REDIS_PORT
-            - name: KAKAO_CLIENT_ID
+            - name: KAKAO_NATIVE_APP_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
-                  key: KAKAO_CLIENT_ID
-            - name: KAKAO_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.name }}-secret
-                  key: KAKAO_CLIENT_SECRET
+                  key: KAKAO_NATIVE_APP_KEY
             - name: GOOGLE_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: GOOGLE_CLIENT_ID
-            - name: GOOGLE_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.name }}-secret
-                  key: GOOGLE_CLIENT_SECRET
-            - name: BASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.name }}-secret
-                  key: BASE_URL
             - name: JWT_ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
