@@ -68,11 +68,16 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: KAKAO_NATIVE_APP_KEY
-            - name: GOOGLE_CLIENT_ID
+            - name: GOOGLE_WEB_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
-                  key: GOOGLE_CLIENT_ID
+                  key: GOOGLE_WEB_CLIENT_ID
+            - name: GOOGLE_ANDROID_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: GOOGLE_ANDROID_CLIENT_ID
             - name: JWT_ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
