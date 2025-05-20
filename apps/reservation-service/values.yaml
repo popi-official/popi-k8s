@@ -20,3 +20,5 @@ secretKeys:
   - DB_NAME
   - DB_USERNAME
   - DB_PASSWORD
+  - REDIS_HOST
+  - REDIS_PORT
