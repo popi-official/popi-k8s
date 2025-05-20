@@ -67,6 +67,32 @@ data:
                 - RewritePath=/reservations/(?<segment>.*), /$\{segment}
                 - JwtAuthenticationFilter
 
+            - id: popup-service
+              uri: lb://popup-service-svc
+              predicates:
+                - Path=/popups/**
+                - Method=GET,POST,DELETE
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/popups/(?<segment>.*), /$\{segment}
+            
+            - id: notification-docs
+              uri: lb://notification-service-svc
+              predicates:
+                - Path=/notifications/v3/api-docs
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/reservations/(?<segment>.*), /$\{segment}
+            - id: notification-service
+              uri: lb://notification-service-svc
+              predicates:
+                - Path=/notifications/**
+                - Method=GET,POST,DELETE
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/notifications/(?<segment>.*), /$\{segment}
+                - JwtAuthenticationFilter
+
           globalcors:
             cors-configurations:
               "[/**]":
