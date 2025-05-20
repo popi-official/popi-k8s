@@ -10,14 +10,6 @@ data:
         kubernetes:
           discovery:
             namespaces: popi-user
-      jpa:
-        hibernate:
-          ddl-auto: create
-        properties:
-          hibernate:
-            format_sql: true
-            default_batch_fetch_size: 100
-        open-in-view: false
 
     eureka:
       client:
