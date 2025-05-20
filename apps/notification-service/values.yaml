@@ -1,0 +1,17 @@
+app:
+  name: notification-service
+
+replicaCount: 1
+
+container:
+  image:
+    name: 446305434496.dkr.ecr.ap-northeast-2.amazonaws.com/popi-user/popi-notification-service
+    tag: latest
+    pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+secretKeys:
