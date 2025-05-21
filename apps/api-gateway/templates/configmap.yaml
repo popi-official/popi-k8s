@@ -123,8 +123,7 @@ data:
               "[/**]":
                 allow-credentials: true
                 allowed-origins:
-                  - http://localhost:3001
-                  - https://www.dev.popi.today
+                  - 192.168.0.138:3001
                 allowed-headers:
                   - "*"
                 allowed-methods:
