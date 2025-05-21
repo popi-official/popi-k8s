@@ -122,8 +122,7 @@ data:
             cors-configurations:
               "[/**]":
                 allow-credentials: true
-                allowed-origins:
-                  - 192.168.0.138:3001
+                allowed-origin-patterns: "[*]"
                 allowed-headers:
                   - "*"
                 allowed-methods:
