@@ -29,7 +29,6 @@ data:
         user-redis:
           host: ${USER_REDIS_HOST}
           port: ${USER_REDIS_PORT}
-          password: ${USER_REDIS_PASSWORD:}
           database: ${USER_REDIS_DATABASE}
 
 
