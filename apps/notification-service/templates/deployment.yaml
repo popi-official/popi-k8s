@@ -31,27 +31,27 @@ spec:
             - name: MYSQL_HOST
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.app.name } }-secret
+                  name: {{ .Values.app.name }}-secret
                   key: MYSQL_HOST
             - name: MYSQL_PORT
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.app.name } }-secret
+                  name: {{ .Values.app.name }}-secret
                   key: MYSQL_PORT
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.app.name } }-secret
+                  name: {{ .Values.app.name }}-secret
                   key: DB_NAME
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.app.name } }-secret
+                  name: {{ .Values.app.name }}-secret
                   key: DB_USERNAME
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.app.name } }-secret
+                  name: {{ .Values.app.name }}-secret
                   key: DB_PASSWORD
       volumes:
         - name: {{ .Values.app.name }}-config-volume
