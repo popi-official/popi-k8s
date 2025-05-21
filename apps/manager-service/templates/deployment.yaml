@@ -63,6 +63,26 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: REDIS_PORT
+            - name: USER_REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: USER_REDIS_HOST
+            - name: USER_REDIS_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: USER_REDIS_PORT
+            - name: USER_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: USER_REDIS_PASSWORD
+            - name: USER_REDIS_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: USER_REDIS_DATABASE
             - name: JWT_ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
