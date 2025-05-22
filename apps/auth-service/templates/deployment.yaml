@@ -88,6 +88,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: JWT_REFRESH_TOKEN_SECRET
+            - name: JWT_REGISTER_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: JWT_REGISTER_TOKEN_SECRET
             - name: JWT_ACCESS_TOKEN_EXPIRATION_TIME
               valueFrom:
                 secretKeyRef:
@@ -98,6 +103,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: JWT_REFRESH_TOKEN_EXPIRATION_TIME
+            - name: JWT_REGISTER_TOKEN_EXPIRATION_TIME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: JWT_REGISTER_TOKEN_EXPIRATION_TIME
             - name: JWT_ISSUER
               valueFrom:
                 secretKeyRef:
