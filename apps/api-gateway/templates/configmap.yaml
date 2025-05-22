@@ -30,6 +30,14 @@ data:
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/auth/(?<segment>.*), /$\{segment}
+            - id: auth-register
+              uri: lb://auth-service-svc
+              predicates:
+                - Path=/auth/register
+                - Method=POST
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/auth/(?<segment>.*), /$\{segment}
             - id: auth-reissue
               uri: lb://auth-service-svc
               predicates:
