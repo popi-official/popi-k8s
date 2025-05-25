@@ -56,15 +56,6 @@ data:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/auth/(?<segment>.*), /$\{segment}
                 - JwtAuthenticationFilter
-            - id: auth-withdrawal
-              uri: lb://auth-service-svc
-              predicates:
-                - Path=/auth/withdrawal
-                - Method=DELETE
-              filters:
-                - RemoveRequestHeader=Cookie
-                - RewritePath=/auth/(?<segment>.*), /$\{segment}
-                - JwtAuthenticationFilter
 
             - id: member-docs
               uri: lb://member-service-svc
@@ -73,11 +64,20 @@ data:
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/members/(?<segment>.*), /$\{segment}
-            - id: member-service
+            - id: member-me
               uri: lb://member-service-svc
               predicates:
-                - Path=/members/**
-                - Method=GET,POST,DELETE
+                - Path=/members/me
+                - Method=GET
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/members/(?<segment>.*), /$\{segment}
+                - JwtAuthenticationFilter
+            - id: member-withdrawal
+              uri: lb://member-service-svc
+              predicates:
+                - Path=/members/withdrawal
+                - Method=DELETE
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/members/(?<segment>.*), /$\{segment}
