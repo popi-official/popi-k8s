@@ -28,31 +28,6 @@ spec:
               value: Asia/Seoul
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
-            - name: MYSQL_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.name }}-secret
-                  key: MYSQL_HOST
-            - name: MYSQL_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.name }}-secret
-                  key: MYSQL_PORT
-            - name: DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.name }}-secret
-                  key: DB_NAME
-            - name: DB_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.name }}-secret
-                  key: DB_USERNAME
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.name }}-secret
-                  key: DB_PASSWORD
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
