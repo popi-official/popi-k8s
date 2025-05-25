@@ -1,5 +1,5 @@
 app:
-  name: member-service
+  name: payment-service
 
 replicaCount: 1
 
