@@ -6,7 +6,7 @@ replicaCount: 1
 container:
   image:
     name: 446305434496.dkr.ecr.ap-northeast-2.amazonaws.com/popi-manager
-    tag: 22
+    tag: 23
     pullPolicy: Always
 
 service:
