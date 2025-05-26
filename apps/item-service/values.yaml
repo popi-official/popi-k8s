@@ -13,3 +13,10 @@ service:
   type: ClusterIP
   port: 80
   targetPort: 8080
+
+secretKeys:
+  - MYSQL_HOST
+  - MYSQL_PORT
+  - DB_NAME
+  - DB_USERNAME
+  - DB_PASSWORD
