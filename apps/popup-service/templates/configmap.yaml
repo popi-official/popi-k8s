@@ -9,7 +9,9 @@ data:
       cloud:
         kubernetes:
           discovery:
-            namespaces: popi-user
+            namespaces: 
+              - popi-user
+              - popi-manager
 
     eureka:
       client:
