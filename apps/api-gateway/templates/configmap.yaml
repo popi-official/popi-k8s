@@ -133,7 +133,7 @@ data:
                 - Method=GET,POST,DELETE
               filters:
                 - RemoveRequestHeader=Cookie
-                - RewritePath=/popups/(?<segment>.*), /$\{segment}
+                - RewritePath=/items/(?<segment>.*), /$\{segment}
 
           globalcors:
             cors-configurations:
