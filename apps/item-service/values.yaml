@@ -1,5 +1,5 @@
 app:
-  name: popup-service
+  name: item-service
 
 replicaCount: 1
 
