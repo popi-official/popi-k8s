@@ -125,6 +125,15 @@ data:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/notifications/(?<segment>.*), /$\{segment}
                 - JwtAuthenticationFilter
+                
+            - id: item-service
+              uri: lb://item-service-svc
+              predicates:
+                - Path=/items/**
+                - Method=GET,POST,DELETE
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/popups/(?<segment>.*), /$\{segment}
 
           globalcors:
             cors-configurations:
@@ -158,6 +167,9 @@ data:
         urls[4]:
           name: 알림 서비스
           url: /notifications/v3/api-docs
+        urls[5]:
+          name: 상품 서비스
+          url: /items/v3/api-docs
 
     jwt:
       access-token-secret: ${JWT_ACCESS_TOKEN_SECRET}
