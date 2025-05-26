@@ -125,15 +125,31 @@ data:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/notifications/(?<segment>.*), /$\{segment}
                 - JwtAuthenticationFilter
-                
-            - id: item-service
-              uri: lb://item-service-svc
+                  
+            - id: item-docs
+              uri: lb://ITEMS
               predicates:
-                - Path=/items/**
-                - Method=GET,POST,DELETE
+                - Path=/items/v3/api-docs
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/items/(?<segment>.*), /$\{segment}
+            - id: item-service
+              uri: lb://ITEMS
+              predicates:
+                - Path=/items/**
+                - Method=GET
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/items/(?<segment>.*), /$\{segment}
+            - id: item-recommendations
+              uri: lb://ITEMS
+              predicates:
+                - Path=/items/*/recommendations
+                - Method=GET
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/items/(?<segment>.*), /$\{segment}
+                - JwtAuthenticationFilter
 
           globalcors:
             cors-configurations:
