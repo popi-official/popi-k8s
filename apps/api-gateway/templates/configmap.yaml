@@ -127,14 +127,14 @@ data:
                 - JwtAuthenticationFilter
                   
             - id: item-docs
-              uri: lb://ITEMS
+              uri: lb://item-service-svc
               predicates:
                 - Path=/items/v3/api-docs
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/items/(?<segment>.*), /$\{segment}
             - id: item-service
-              uri: lb://ITEMS
+              uri: lb://item-service-svc
               predicates:
                 - Path=/items/**
                 - Method=GET
@@ -142,7 +142,7 @@ data:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/items/(?<segment>.*), /$\{segment}
             - id: item-recommendations
-              uri: lb://ITEMS
+              uri: lb://item-service-svc
               predicates:
                 - Path=/items/*/recommendations
                 - Method=GET
