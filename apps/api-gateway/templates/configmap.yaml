@@ -111,11 +111,11 @@ data:
             - id: popup-service
               uri: lb://popup-service-svc
               predicates:
-                - Path=/popups/**
+                - Path=/popups,/popups/**
                 - Method=GET,POST,DELETE
               filters:
                 - RemoveRequestHeader=Cookie
-                - RewritePath=/popups/(?<segment>.*), /$\{segment}
+                - RewritePath=/popups/(?<segment>.*), $\{segment}
             
             - id: notification-docs
               uri: lb://notification-service-svc
