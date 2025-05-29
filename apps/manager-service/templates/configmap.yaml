@@ -9,7 +9,9 @@ data:
       cloud:
         kubernetes:
           discovery:
-            namespaces: popi-manager
+            namespaces:
+              - popi-manager
+              - popi-user
       datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${DB_NAME}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
@@ -35,6 +37,9 @@ data:
           port: ${USER_REDIS_PORT}
           database: ${USER_REDIS_DATABASE}
 
+    eureka:
+      client:
+        enabled: false
 
     jwt:
       access-token-secret: ${JWT_ACCESS_TOKEN_SECRET}
