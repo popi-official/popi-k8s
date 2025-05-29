@@ -133,6 +133,23 @@ data:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/notifications/(?<segment>.*), /$\{segment}
                 - JwtAuthenticationFilter
+
+            - id: payment-docs
+              uri: lb://payment-service-svc
+              predicates:
+                - Path=/payments/v3/api-docs
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/payments/(?<segment>.*), /$\{segment}
+            - id: payment-service
+              uri: lb://payment-service-svc
+              predicates:
+                - Path=/payments/**
+                - Method=POST
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/payments/(?<segment>.*), /$\{segment}
+                - JwtAuthenticationFilter
                   
             - id: item-docs
               uri: lb://item-service-svc
@@ -192,6 +209,9 @@ data:
           name: 알림 서비스
           url: /notifications/v3/api-docs
         urls[5]:
+          name: 결제 서비스
+          url: /payments/v3/api-docs
+        urls[6]:
           name: 상품 서비스
           url: /items/v3/api-docs
 
