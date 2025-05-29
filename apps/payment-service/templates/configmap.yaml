@@ -9,7 +9,9 @@ data:
       cloud:
         kubernetes:
           discovery:
-            namespaces: popi-user
+            namespaces:
+              - popi-user
+              - popi-manager
       datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${DB_NAME}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
