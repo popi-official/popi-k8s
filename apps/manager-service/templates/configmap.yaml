@@ -89,3 +89,7 @@ data:
     logging:
       level:
         org.hibernate.SQL: debug
+        
+    reservation:
+      service:
+        name: reservation-service-svc
