@@ -51,3 +51,7 @@ data:
     manager:
       service:
         name: manager-service-svc
+
+    member:
+      service:
+        name: member-service-svc
