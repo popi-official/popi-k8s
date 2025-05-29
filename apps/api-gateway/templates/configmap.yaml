@@ -90,6 +90,14 @@ data:
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/reservations/(?<segment>.*), /$\{segment}
+            - id: reservation-internal
+              uri: lb://reservation-service-svc
+              predicates:
+                - Path=/reservations/internal/**
+                - Method=GET
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/reservations/(?<segment>.*), /$\{segment}
             - id: reservation-service
               uri: lb://reservation-service-svc
               predicates:
