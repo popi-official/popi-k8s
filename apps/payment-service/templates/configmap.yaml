@@ -29,6 +29,8 @@ data:
         enabled: true
         baseline-on-migrate: true
         locations: classpath:db/migration
+      kafka:
+        bootstrap-servers: 43.203.8.14:29092
     
     iamport:
       key: ${IAMPORT_KEY}
