@@ -6,7 +6,7 @@ replicaCount: 1
 container:
   image:
     name: 446305434496.dkr.ecr.ap-northeast-2.amazonaws.com/popi-user/popi-payment-service
-    tag: 108
+    tag: 109
     pullPolicy: Always
 
 service:
