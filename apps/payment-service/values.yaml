@@ -20,3 +20,5 @@ secretKeys:
   - DB_NAME
   - DB_USERNAME
   - DB_PASSWORD
+  - IAMPORT_KEY
+  - IAMPORT_SECRET

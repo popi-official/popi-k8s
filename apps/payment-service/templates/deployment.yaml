@@ -53,6 +53,16 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: DB_PASSWORD
+            - name: IAMPORT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: IAMPORT_KEY
+            - name: IAMPORT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: IAMPORT_SECRET
       volumes:
         - name: {{ .Values.app.name }}-config-volume
           configMap:
