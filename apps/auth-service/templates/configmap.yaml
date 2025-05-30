@@ -28,6 +28,7 @@ data:
         audiences:
           - ${GOOGLE_WEB_CLIENT_ID}
           - ${GOOGLE_ANDROID_CLIENT_ID}
+          - ${GOOGLE_IOS_CLIENT_ID:}
 
     jwt:
       access-token-secret: ${JWT_ACCESS_TOKEN_SECRET}

@@ -53,6 +53,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: GOOGLE_ANDROID_CLIENT_ID
+            - name: GOOGLE_IOS_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: GOOGLE_IOS_CLIENT_ID
             - name: JWT_ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
