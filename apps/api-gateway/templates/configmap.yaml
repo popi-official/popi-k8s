@@ -101,11 +101,11 @@ data:
             - id: reservation-service
               uri: lb://reservation-service-svc
               predicates:
-                - Path=/reservations/**
+                - Path=/reservations, /reservations/**
                 - Method=GET,POST,DELETE
               filters:
                 - RemoveRequestHeader=Cookie
-                - RewritePath=/reservations/(?<segment>.*), /$\{segment}
+                - RewritePath=/reservations(?<segment>/?.*), /$\{segment}
                 - JwtAuthenticationFilter
 
             - id: popup-service
