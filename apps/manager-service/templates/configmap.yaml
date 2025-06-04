@@ -100,3 +100,7 @@ data:
     reservation:
       service:
         name: reservation-service-svc
+    
+    payment:
+      service:
+        name: payment-service-svc
