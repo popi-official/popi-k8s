@@ -152,11 +152,11 @@ data:
             - id: payment-external
               uri: lb://payment-service-svc
               predicates:
-                - Path=/payments/**
-                - Method=POST
+                - Path=/payments, /payments/**
+                - Method=GET,POST
               filters:
                 - RemoveRequestHeader=Cookie
-                - RewritePath=/payments/(?<segment>.*), /$\{segment}
+                - RewritePath=/payments(?<segment>/?.*), /$\{segment}
                 - JwtAuthenticationFilter
                   
             - id: item-docs
