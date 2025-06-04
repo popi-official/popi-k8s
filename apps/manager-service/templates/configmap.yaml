@@ -38,6 +38,11 @@ data:
           database: ${USER_REDIS_DATABASE}
       kafka:
         bootstrap-servers: 43.203.8.14:29092
+      batch:
+        job:
+          enabled: false
+        jdbc:
+          initialize-schema: always
 
     eureka:
       client:
