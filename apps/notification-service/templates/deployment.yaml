@@ -53,6 +53,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: DB_PASSWORD
+            - name: FCM_CERTIFICATION
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: FCM_CERTIFICATION
       volumes:
         - name: {{ .Values.app.name }}-config-volume
           configMap:

@@ -39,3 +39,6 @@ data:
       enable-kotlin: false
       default-consumes-media-type: application/json
       default-produces-media-type: application/json
+    
+    fcm:
+      certification: ${FCM_CERTIFICATION}

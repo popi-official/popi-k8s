@@ -20,3 +20,4 @@ secretKeys:
   - DB_NAME
   - DB_USERNAME
   - DB_PASSWORD
+  - FCM_CERTIFICATION
