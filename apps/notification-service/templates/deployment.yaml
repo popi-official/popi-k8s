@@ -53,6 +53,16 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: DB_PASSWORD
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: REDIS_PORT
             - name: FCM_CERTIFICATION
               valueFrom:
                 secretKeyRef:
