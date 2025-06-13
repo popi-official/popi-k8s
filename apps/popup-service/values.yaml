@@ -9,6 +9,14 @@ container:
     tag: 135
     pullPolicy: Always
 
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
 service:
   type: ClusterIP
   port: 80
