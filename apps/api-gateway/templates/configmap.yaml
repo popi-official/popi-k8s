@@ -91,7 +91,7 @@ data:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/reservations/(?<segment>.*), /$\{segment}
             - id: reservation-entrance
-              uri: lb://RESERVATIONS
+              uri: lb://reservation-service-svc
               predicates:
                 - Path=/reservations/entrance/**
                 - Method=POST
