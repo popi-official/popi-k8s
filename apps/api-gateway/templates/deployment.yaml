@@ -28,7 +28,7 @@ spec:
             - name: TZ
               value: Asia/Seoul
             - name: SPRING_PROFILES_ACTIVE
-              value: k8s
+              value: dev
             - name: JWT_ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
