@@ -238,3 +238,12 @@ data:
     logging:
       level:
         org.hibernate.SQL: debug
+
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "health,prometheus"
+      metrics:
+        tags:
+          application: {{ .Values.app.name }}

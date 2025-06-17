@@ -47,3 +47,12 @@ data:
           negotiationType: plaintext
       server:
         port: 9092
+
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "health,prometheus"
+      metrics:
+        tags:
+          application: {{ .Values.app.name }}

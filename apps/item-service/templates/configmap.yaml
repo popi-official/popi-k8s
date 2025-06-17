@@ -45,3 +45,12 @@ data:
     manager:
       service:
         name: manager-service-svc
+
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "health,prometheus"
+      metrics:
+        tags:
+          application: {{ .Values.app.name }}
