@@ -55,6 +55,10 @@ data:
       default-consumes-media-type: application/json
       default-produces-media-type: application/json
     
-    member:
-      service:
-        name: member-service-svc
+    grpc:
+      client:
+        auth-service:
+          address: "dns:///auth-service:9091"
+          negotiationType: plaintext
+      server:
+        port: 9092
