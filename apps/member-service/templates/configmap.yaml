@@ -42,8 +42,8 @@ data:
 
     grpc:
       client:
-        member-service:
-          address: "static://member-service-svc:9092"
+        auth-service:
+          address: "dns:///auth-service-grpc-svc:9091"
           negotiationType: plaintext
       server:
-        port: 9091
+        port: 9092

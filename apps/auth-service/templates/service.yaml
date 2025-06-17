@@ -11,3 +11,18 @@ spec:
       port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
   type: {{ .Values.service.type }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-grpc-svc
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: {{ .Values.app.name }}
+  ports:
+    - name: grpc
+      protocol: TCP
+      port: {{ .Values.service.grpc.port }}
+      targetPort: {{ .Values.service.grpc.targetPort }}
+  type: {{ .Values.service.type }}
