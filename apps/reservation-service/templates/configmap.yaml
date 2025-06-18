@@ -59,9 +59,11 @@ data:
       service:
         name: manager-service-svc
 
-    member:
-      service:
-        name: member-service-svc
+    grpc:
+      client:
+        member-service:
+          address: "dns:///member-service-grpc-svc:9092"
+          negotiationType: plaintext
 
     management:
       endpoints:
