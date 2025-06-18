@@ -56,10 +56,6 @@ data:
       service:
         name: manager-service-svc
 
-    member:
-      service:
-        name: member-service-svc
-
     management:
       endpoints:
         web:
@@ -68,3 +64,9 @@ data:
       metrics:
         tags:
           application: {{ .Values.app.name }}
+
+    grpc:
+      client:
+        member-service:
+          address: "dns:///member-service-grpc-svc:9092"
+          negotiationType: plaintext
