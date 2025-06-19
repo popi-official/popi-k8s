@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Release.Namespace }}
 data:
-  application-k8s.yml: |
+  application-dev.yml: |
     spring:
       cloud:
         kubernetes:

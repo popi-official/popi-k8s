@@ -34,7 +34,7 @@ spec:
             - name: TZ
               value: Asia/Seoul
             - name: SPRING_PROFILES_ACTIVE
-              value: k8s
+              value: dev
       volumes:
         - name: {{ .Values.app.name }}-config-volume
           configMap:
