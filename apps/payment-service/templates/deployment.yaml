@@ -63,6 +63,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: IAMPORT_SECRET
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: KAFKA_BOOTSTRAP_SERVERS
       volumes:
         - name: {{ .Values.app.name }}-config-volume
           configMap:
