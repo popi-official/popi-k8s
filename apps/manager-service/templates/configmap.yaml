@@ -37,7 +37,7 @@ data:
           port: ${USER_REDIS_PORT}
           database: ${USER_REDIS_DATABASE}
       kafka:
-        bootstrap-servers: 43.203.8.14:29092
+        bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
       batch:
         job:
           enabled: false

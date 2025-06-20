@@ -128,6 +128,12 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.app.name }}-secret
                   key: DYNAMODB_TABLE_NAME
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.name }}-secret
+                  key: KAFKA_BOOTSTRAP_SERVERS
+
       volumes:
         - name: {{ .Values.app.name }}-config-volume
           configMap:
